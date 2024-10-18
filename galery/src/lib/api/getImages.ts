@@ -1,18 +1,17 @@
 export interface Image {
-    id: string;
-    url: string;
-    title: string;
-    // Ajoutez d'autres propriétés selon vos besoins
+    name: string;
+    profile_url: string;
+    image_url: string;
 }
 
 export async function getImages(): Promise<Image[]> {
     try {
-        const response = await fetch('https://api.example.com/images');
+        const response = await fetch('/imagesOm.json'); // Chemin mis à jour
         if (!response.ok) {
             throw new Error('Erreur lors de la récupération des images');
         }
-        const data = await response.json();
-        return data.images as Image[]; // Assurez-vous que la structure des données correspond à ce que vous attendez
+        const data: Image[] = await response.json();
+        return data;
     } catch (error) {
         console.error('Erreur:', error);
         return [];
